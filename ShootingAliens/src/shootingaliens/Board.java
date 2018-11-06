@@ -63,7 +63,7 @@ public class Board extends JPanel implements ActionListener {
     }
 
     public void initAliens() {
-        
+
         aliens = new ArrayList<>();
 
         for (int[] p : pos) {
@@ -80,8 +80,11 @@ public class Board extends JPanel implements ActionListener {
             drawObjects(g);
 
         } else {
-
-            drawGameOver(g);
+            if (aliens.size() == 0) {
+                drawVictory(g);
+            } else {
+                drawGameOver(g);
+            }
         }
 
         Toolkit.getDefaultToolkit().sync();
@@ -98,7 +101,7 @@ public class Board extends JPanel implements ActionListener {
 
         for (Missile missile : ms) {
             if (missile.isVisible()) {
-                g.drawImage(missile.getImage(), missile.getX(), 
+                g.drawImage(missile.getImage(), missile.getX(),
                         missile.getY(), this);
             }
         }
@@ -116,6 +119,18 @@ public class Board extends JPanel implements ActionListener {
     private void drawGameOver(Graphics g) {
 
         String msg = "Game Over";
+        Font small = new Font("Helvetica", Font.BOLD, 14);
+        FontMetrics fm = getFontMetrics(small);
+
+        g.setColor(Color.white);
+        g.setFont(small);
+        g.drawString(msg, (B_WIDTH - fm.stringWidth(msg)) / 2,
+                B_HEIGHT / 2);
+    }
+
+    private void drawVictory(Graphics g) {
+
+        String msg = "Victory!";
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = getFontMetrics(small);
 
@@ -149,7 +164,7 @@ public class Board extends JPanel implements ActionListener {
     private void updateShip() {
 
         if (spaceship.isVisible()) {
-            
+
             spaceship.move();
         }
     }
@@ -181,7 +196,7 @@ public class Board extends JPanel implements ActionListener {
         for (int i = 0; i < aliens.size(); i++) {
 
             Alien a = aliens.get(i);
-            
+
             if (a.isVisible()) {
                 a.move();
             } else {
@@ -195,11 +210,11 @@ public class Board extends JPanel implements ActionListener {
         Rectangle r3 = spaceship.getBounds();
 
         for (Alien alien : aliens) {
-            
+
             Rectangle r2 = alien.getBounds();
 
             if (r3.intersects(r2)) {
-                
+
                 spaceship.setVisible(false);
                 alien.setVisible(false);
                 ingame = false;
@@ -217,7 +232,7 @@ public class Board extends JPanel implements ActionListener {
                 Rectangle r2 = alien.getBounds();
 
                 if (r1.intersects(r2)) {
-                    
+
                     m.setVisible(false);
                     alien.setVisible(false);
                 }
