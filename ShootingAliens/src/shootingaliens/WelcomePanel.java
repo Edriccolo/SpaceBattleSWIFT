@@ -23,7 +23,7 @@ public class WelcomePanel extends JPanel {
         super.paintComponent(g);
 
         String msg = "Space Shooter";
-        Font small = new Font("Helvetica", Font.BOLD, 14);
+        Font small = new Font("Helvetica", Font.BOLD, 25);
         FontMetrics fm = getFontMetrics(small);
 
         g.setColor(Color.white);

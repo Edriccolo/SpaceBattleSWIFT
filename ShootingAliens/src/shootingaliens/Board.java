@@ -26,9 +26,8 @@ public class Board extends JPanel implements ActionListener {
     private final int ICRAFT_Y = 60;
     private final int B_WIDTH = 400;
     private final int B_HEIGHT = 300;
-    private final int DELAY = 15;
 
-    private final int[][] pos = {
+    private final int[][] pos = {// possibilità di randomizzare lo spawn
         {2380, 29}, {2500, 59}, {1380, 89},
         {780, 109}, {580, 139}, {680, 239},
         {790, 259}, {760, 50}, {790, 150},
@@ -40,8 +39,8 @@ public class Board extends JPanel implements ActionListener {
         {820, 128}, {490, 170}, {700, 30}
     };
 
-    public Board() {
-
+    public Board(Timer t) {
+        timer=t;
         initBoard();
     }
 
@@ -58,8 +57,6 @@ public class Board extends JPanel implements ActionListener {
 
         initAliens();
 
-        timer = new Timer(DELAY, this);
-        timer.start();
     }
 
     public void initAliens() {
@@ -119,7 +116,7 @@ public class Board extends JPanel implements ActionListener {
     private void drawGameOver(Graphics g) {
 
         String msg = "Game Over";
-        Font small = new Font("Helvetica", Font.BOLD, 14);
+        Font small = new Font("Helvetica", Font.BOLD, 20);
         FontMetrics fm = getFontMetrics(small);
 
         g.setColor(Color.white);
@@ -131,7 +128,7 @@ public class Board extends JPanel implements ActionListener {
     private void drawVictory(Graphics g) {
 
         String msg = "Victory!";
-        Font small = new Font("Helvetica", Font.BOLD, 14);
+        Font small = new Font("Helvetica", Font.BOLD, 20);
         FontMetrics fm = getFontMetrics(small);
 
         g.setColor(Color.white);
