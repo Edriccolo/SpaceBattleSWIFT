@@ -5,21 +5,16 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.Timer;
 
 public class Welcome extends JFrame implements ActionListener {
 
     CollisionEx ex;
     JButton but;
-    Timer timer;
+
 
     public Welcome() {
-
-        ex = new CollisionEx(this,timer);
 
         initUI();
     }
@@ -35,10 +30,7 @@ public class Welcome extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(400, 300));
-        setVisible(true);
-
-        timer = new Timer(15, this);
-        
+        setVisible(true);        
         
         add(new WelcomePanel(but));
 
@@ -50,9 +42,9 @@ public class Welcome extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == but) {
+            ex = new CollisionEx(this);
             this.setVisible(false);
             ex.setVisible(true);
-            timer.start();
         }
 
     }

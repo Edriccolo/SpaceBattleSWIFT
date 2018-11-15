@@ -1,21 +1,20 @@
 package shootingaliens;
 
 import javax.swing.JFrame;
-import javax.swing.Timer;
 
 public class CollisionEx extends JFrame {
 
     Welcome ex;
-    Timer t;
 
-    public CollisionEx(Welcome e,Timer t) {
-        this.t=t;
+
+    public CollisionEx(Welcome e) {
+    
         initUI();
     }
 
     private void initUI() {
 
-        add(new Board(t));
+        add(new Board());
 
         setResizable(false);
         pack();

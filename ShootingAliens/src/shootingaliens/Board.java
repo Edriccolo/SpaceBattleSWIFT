@@ -39,8 +39,8 @@ public class Board extends JPanel implements ActionListener {
         {820, 128}, {490, 170}, {700, 30}
     };
 
-    public Board(Timer t) {
-        timer=t;
+    public Board() {
+       
         initBoard();
     }
 
@@ -54,7 +54,8 @@ public class Board extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 
         spaceship = new SpaceShip(ICRAFT_X, ICRAFT_Y);
-
+        timer = new Timer(15, this);
+        timer.start();
         initAliens();
 
     }
