@@ -1,12 +1,16 @@
 package shootingaliens;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Welcome extends JFrame implements ActionListener {
 
@@ -20,20 +24,30 @@ public class Welcome extends JFrame implements ActionListener {
     }
 
     private void initUI() {
-
-        but = new JButton("Start the game!");
-        but.setSize(80, 40);
-        but.setBackground(Color.white);
+        setLayout(new FlowLayout());
+        but = new JButton();
+        but.setBackground(Color.black);
+        but.setBorder(null);
+        but.setIcon(new ImageIcon("src/resources/Start.png"));
         but.addActionListener(this);
+        
+        JPanel back=new JPanel();
+        back.setBackground(Color.BLACK);
+        back.setPreferredSize(new Dimension(400,300));
+        back.setLayout(new FlowLayout());
+        
+        
         setTitle("Shooting game");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(400, 300));
-        setVisible(true);        
-        
-        add(new WelcomePanel(but));
-
+        setVisible(true);   
+        back.add(new WelcomePanel());
+        back.add(but,BorderLayout.SOUTH);
+        add(back);
+       
+       
         setResizable(false);
         pack();
 
